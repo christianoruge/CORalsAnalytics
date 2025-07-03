@@ -1,7 +1,7 @@
-#!/usr/bin/env python3.12.4
+#!/usr/bin/env python3.12.6
 # -*- coding: utf-8 -*-
 
-#CORals Analytics v.3.12.4
+#CORals Analytics v.3.12.5
 #This script is created by Christian Otto Ruge and CORals.
 #It is licenced under GNU GPL v.3.
 #https://www.corals.no
@@ -232,7 +232,7 @@ columnRight = [
     [sg.Text('"Moderation analysis" is doing moderation analyses according to Dr. F. Hayes (model 1) and outputs moderation values. Line charts and tables may be exported (optional).', size=(45,3), background_color='lightsteelblue2')],
     [sg.Text('"Factor analysis" performs exploratory analysis, confirmatory analyses and other factor analyses. Values may be exported (optional).', size=(52,2), background_color='lightsteelblue2')],  
     [sg.Text('"Edit dataset" creates new variables in the dataset (scale-variables or dictonomous variables), and deletes unwanted variables.', size=(45,3), background_color='lightsteelblue2')],  
-    [sg.Text('"Cronbachs Alpha is a validation tool for factors.', size = (45, 2), justification='left', background_color='lightsteelblue2')],
+    [sg.Text('"Cronbachs Alpha" is a validation tool for factors.', size = (45, 2), justification='left', background_color='lightsteelblue2')],
     [sg.Text('"CSV rescue" converts csv-files to xlsx-files, resolving encoding problems (ascii to latin) during the process.', size = (45, 2), justification='left', background_color='lightsteelblue2')],
     [sg.Text('"SAV-converter" converts sav-files (SPSS) to both csv- and xlsx-files', size = (45, 1), justification='left', background_color='lightsteelblue2')],
     [sg.Text('"Make presentation" creates a Powerpoint presentation with the results.', size = (45, 1), justification='left', background_color='lightsteelblue2')],
@@ -250,7 +250,7 @@ layoutComplete = [
     [sg.Column(layoutBottom, element_justification='left')]]
 
 try:    
-    winOriginal = sg.Window('CORals Analytics v. 3.12.2', default_element_size=(40, 1), grab_anywhere=False, location=(100,100), size=(1080,690)).Layout(layoutComplete)    
+    winOriginal = sg.Window('CORals Analytics v. 3.12.5', default_element_size=(40, 1), grab_anywhere=False, location=(100,100), size=(1080,690)).Layout(layoutComplete)    
 
     winCsv_active=False
     winCorrelation_active=False

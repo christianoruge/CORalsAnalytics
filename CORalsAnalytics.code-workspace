@@ -2,10 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"name": "corals-analytics_3.12.4",
-			"path": "corals-analytics_3.12.4"
 		}
 	],
 	"settings": {}

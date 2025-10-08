@@ -5,6 +5,7 @@
 #This script is created by Christian Otto Ruge and CORals.
 #It is licenced under GNU GPL v.3.
 #https://www.corals.no
+#https://github.com/christianoruge/CORalsAnalytics
 
 
 import os
@@ -203,7 +204,7 @@ layoutOriginal = [
     [sg.Frame(layout=[      
     [sg.Radio('Distribution analysis', "RADIO1", key="Distribution", default=False, size=(18,1)), sg.Radio('Correlation analysis', "RADIO1", key="Correlation",  default=False, size=(18,1)), sg.Radio('Regression analysis', "RADIO1", key="Regression", default=False, size=(23,1))],         
     [sg.Radio('Mediation analysis', "RADIO1", key="Mediation", default=False, size=(18,1)), sg.Radio('Moderation analysis', "RADIO1", key="Moderation", default=False, size=(18,1)), sg.Radio('Factor analysis', "RADIO1", key="Factor", default=False, size=(23,1))],
-    [sg.Radio('Cronbachs Alpha', "RADIO1", key="Cronbachs", default=False, size=(18,1)), sg.Radio('CSV Rescue', "RADIO1", key="CSV", default=False, size=(18,1)), sg.Radio('Latent Class Analysis', "RADIO1", key="lca", default=False, size=(23,1))],
+    [sg.Radio("Cronbach's Alpha", "RADIO1", key="Cronbachs", default=False, size=(18,1)), sg.Radio('CSV Rescue', "RADIO1", key="CSV", default=False, size=(18,1)), sg.Radio('Latent Class Analysis', "RADIO1", key="lca", default=False, size=(23,1))],
     [sg.Radio('Edit dataset', "RADIO1", key="Compute", default=False, size=(18,1)), sg.Radio('SAV-converter', "RADIO1", key="sav", default=False, size=(18,1)),sg.Radio('Make presentation', "RADIO1", key="Presentation", default=False, size=(23,1))]], title='Options', title_color='red', relief=sg.RELIEF_SUNKEN, tooltip='Use these to set flags')],    
     [sg.Text('Choose dataset (except for "CSV Rescue-"/"SAV-converter")', font=('bold'))],
     [sg.Text('NB: Dataset must be in ".xlsx" or ".csv". All variables to be analysed should be numeric.)')],
@@ -231,15 +232,12 @@ columnRight = [
     [sg.Text('"Mediation analysis" outputs mediation values such as "direct effect" and "indirect effect". Tables may be exported (optional).', size=(45,2), background_color='lightsteelblue2')],
     [sg.Text('"Moderation analysis" is doing moderation analyses according to Dr. F. Hayes (model 1) and outputs moderation values. Line charts and tables may be exported (optional).', size=(45,3), background_color='lightsteelblue2')],
     [sg.Text('"Factor analysis" performs exploratory analysis, confirmatory analyses and other factor analyses. Values may be exported (optional).', size=(52,2), background_color='lightsteelblue2')],  
-    [sg.Text('"Edit dataset" creates new variables in the dataset (scale-variables or dictonomous variables), and deletes unwanted variables.', size=(45,3), background_color='lightsteelblue2')],  
+    [sg.Text('"Edit dataset" creates new variables in the dataset (scale-variables or dichotomous variables), and deletes unwanted variables.', size=(45,3), background_color='lightsteelblue2')],  
     [sg.Text('"Cronbachs Alpha" is a validation tool for factors.', size = (45, 2), justification='left', background_color='lightsteelblue2')],
     [sg.Text('"CSV rescue" converts csv-files to xlsx-files, resolving encoding problems (ascii to latin) during the process.', size = (45, 2), justification='left', background_color='lightsteelblue2')],
     [sg.Text('"SAV-converter" converts sav-files (SPSS) to both csv- and xlsx-files', size = (45, 1), justification='left', background_color='lightsteelblue2')],
-    [sg.Text('"Make presentation" creates a Powerpoint presentation with the results.', size = (45, 1), justification='left', background_color='lightsteelblue2')],
-    [sg.Text('"Documentation" gives information about which Python tools that are used for each tool.', size=(45,2), background_color='lightsteelblue2')]]
-
-layoutRight = [
-    [sg.Frame('Description', columnRight, size=(430,615), background_color='lightsteelblue2')]]  
+    [sg.Text('"Latent Class Analysis" performs LCA for identifying subgroups in data. Values and plots may be exported (optional).', size = (45, 2), justification='left', background_color='lightsteelblue2')],
+    [sg.Text('"Make presentation" creates a Powerpoint presentation with the results.', size = (45, 1), justification='left', background_color='lightsteelblue2')]]  
     
 layoutBottom =  [
     [sg.Text('')],
@@ -1783,9 +1781,9 @@ try:
                 [sg.Button('Check available variables'), sg.Button('Step back and change dataset')],
                 [sg.Text('Compute new variable', font=('bold'))],
                 [sg.Text('Enter new variable name (NB:No white space or special characters):', size=(50,1)), sg.InputText('', key='new_variable', size=(15, 1))],
-                [sg.Text('Choose variable category: ', font=('bold')), sg.Radio('Median (M): ', 'RADIO1', key='variable_average', default=False, size=(10,1)), sg.Radio('Dictonomous: ', 'RADIO1', key='variable_dict', default=False, size=(20,1))],
+                [sg.Text('Choose variable category: ', font=('bold')), sg.Radio('Median (M): ', 'RADIO1', key='variable_average', default=False, size=(10,1)), sg.Radio('Dichotomous: ', 'RADIO1', key='variable_dict', default=False, size=(20,1))],
                 [sg.Text('For Mean (M), enter source variables, divided by comma.')],
-                [sg.Text('For dictonomous enter source variable and selected value (integer), divided by comma.')],
+                [sg.Text('For dichotomous enter source variable and selected value (integer), divided by comma.')],
                 [sg.InputText('', key='compute_variables', size=(35,1))],  
                 [sg.Text('Delete variable:', font=('bold'))],
                 [sg.Text('Enter variable to be deleted:', size=(25,1)), sg.InputText('', key='del_variables', size=(15, 1))],
@@ -1804,7 +1802,7 @@ try:
                 [sg.Frame('Description', [
                 [sg.Text('This tool creates new variable in the dataset', font=('bold'), size = (50, 1), justification='left', background_color='lightsteelblue2')], 
                 [sg.Text('Mean (M) creates a new variable with the mean of selected variables.', size=(50,1), background_color='lightsteelblue2')],
-                [sg.Text('Dictonomous creates a categorical variable based on a source variable:', size=(55,1), background_color='lightsteelblue2')],
+                [sg.Text('Dichotomous creates a categorical variable based on a source variable:', size=(55,1), background_color='lightsteelblue2')],
                 [sg.Text('Observations with selected value are coded to 1, other values 0 and missing to "NaN".', size=(50,1), background_color='lightsteelblue2')]], size=(500,150), background_color='lightsteelblue2')],
                 [sg.Frame('Preview/log', [
                 [sg.Output(background_color='white', size=(60,50))]], size=(505,450), background_color='lightsteelblue2')]]
@@ -3149,22 +3147,23 @@ try:
                 [sg.Text("Python tools/packages per task:", font=("bold", 18), background_color='lightsteelblue2')],
                 [sg.Text("", background_color='lightsteelblue2')],
                 [sg.Text("Distribution analysis: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("Matplotlib 3.5.1 and Seaborn 0.11.2.", background_color='lightsteelblue2')],                
+                [sg.Text("Matplotlib 3.10.1 and Seaborn 0.13.2.", background_color='lightsteelblue2')],                
                 [sg.Text("Correlation analysis: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("Matplotlib 3.5.1 and Seaborn 0.11.2.", background_color='lightsteelblue2')],
+                [sg.Text("Matplotlib 3.10.1 and Seaborn 0.13.2.", background_color='lightsteelblue2')],
                 [sg.Text("Regression analysis: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("Matplotlib 3.5.1 and Statsmodels 0.13.2.", background_color='lightsteelblue2')],
+                [sg.Text("Matplotlib 3.10.1 and Statsmodels 0.14.4.", background_color='lightsteelblue2')],
                 [sg.Text("Mediation analysis: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("Pingouin 0.5.1.", background_color='lightsteelblue2')],
+                [sg.Text("Pingouin 0.5.5.", background_color='lightsteelblue2')],
                 [sg.Text("Moderation analysis: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("PyProcessMacro 1.0.12 and Matplotlib 3.5.1.", background_color='lightsteelblue2')],
+                [sg.Text("PyProcessMacro 1.0.12 and Matplotlib 3.10.1.", background_color='lightsteelblue2')],
                 [sg.Text("Factor analysis: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("Factor-analyzer 0.4.0 and Matplotlib 3.5.1.", background_color='lightsteelblue2')],
+                [sg.Text("Factor-analyzer 0.5.1 and Matplotlib 3.10.1.", background_color='lightsteelblue2')],
                 [sg.Text("CSV-rescue: ", font=("bold"), background_color='lightsteelblue2')],
+                [sg.Text("Pandas 2.2.3.", background_color='lightsteelblue2')],
                 [sg.Text("Cronbachs Alpha: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("Pingouin 0.5.1.", background_color='lightsteelblue2')],
+                [sg.Text("Pingouin 0.5.5.", background_color='lightsteelblue2')],
                 [sg.Text("SAV converter: ", font=("bold"), background_color='lightsteelblue2')],
-                [sg.Text("Pyreadstat 1.1.6'.", background_color='lightsteelblue2')],
+                [sg.Text("Pyreadstat 1.2.8'.", background_color='lightsteelblue2')],
                 [sg.Text("", background_color='lightsteelblue2')]]
 
             layoutBottom =  [
